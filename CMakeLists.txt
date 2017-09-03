@@ -44,6 +44,11 @@ add_library(spdlog INTERFACE)
 
 option(SPDLOG_BUILD_EXAMPLES "Build examples" OFF)
 option(SPDLOG_BUILD_TESTS "Build tests" OFF)
+option(SPDLOG_NO_THREAD_LOCAL "Force thread_local alternatives" OFF)
+
+if (SPDLOG_NO_THREAD_LOCAL)
+  target_compile_definitions(spdlog PUBLIC SPDLOG_NO_THREAD_LOCAL=1)
+endif()
 
 target_include_directories(
     spdlog
